@@ -59,6 +59,16 @@ void Graph::print_graph(){
         cout << endl;
     }
 }
+bool Graph::hasedge(int src,int dst){
+    if(src<0||dst<0 ||src>=v||dst>=v){
+        throw invalid_argument("Error: Invalid vertex index");
+    }
+    if(adjlist[src][dst]!=0){
+        return true;
+    }
+    return false;
+
+}
        
 
 

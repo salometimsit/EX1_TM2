@@ -19,6 +19,7 @@ namespace graph {
         void Addedge(int src, int dst, int weight = 1);
         void Removeedge(int src, int dst);
         void print_graph();
+        bool hasedge(int src,int dst);
     };
 }
 #endif
