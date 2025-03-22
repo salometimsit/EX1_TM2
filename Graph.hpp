@@ -15,7 +15,7 @@ namespace graph {
     public:
         Graph(int v); 
         ~Graph(); 
-
+        int get_weight(int src,int dst);
         void Addedge(int src, int dst, int weight = 1);
         void Removeedge(int src, int dst);
         void print_graph();

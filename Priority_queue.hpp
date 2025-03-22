@@ -13,13 +13,14 @@ private:
     
     Node* heap;
     int capacity;
-    int curr_size;
+    
     
     void swap(Node &a, Node &b);
     void heapifyup(int index);
     void heapifydown(int index);
 
 public:
+    int curr_size;
     Priority_queue(int capacity);
     ~Priority_queue();
     void push(int value, int priority);

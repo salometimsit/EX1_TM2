@@ -7,13 +7,16 @@
 namespace graph {
     class Algorithms {
         private:
-            Priority_queue& p;
+            Priority_queue p;
             Graph& G;
+            int v;
         public:
-            Algorithms();
+            Algorithms(Graph& G, int v);
             ~Algorithms();
-        Graph BFS(Graph G,int v){}
+            Graph BFS(int ori);
+            Graph DFS(int ori);
 
 
-    }
+    };
 }
+#endif

@@ -2,8 +2,7 @@
 #include <iostream>
 using namespace std;
 using namespace graph;
-
-        
+     
 void Graph::initadjlist(){
     //initializing the adjacency list to 0.
     for(int i=0;i<v;i++){
@@ -30,9 +29,16 @@ Graph::~Graph() {
     delete[] adjlist;
 }
 
+int Graph::get_weight(int src,int dst){
+    if(!hasedge(src,dst)){
+        throw invalid_argument("Invalid vertex index");
+    }
+    return adjlist[src][dst];
+} 
+
 void Graph::Addedge(int src,int dst, int weight){
     if(src<0||dst<0 ||src>v||dst>v){
-        throw std::invalid vertex("vertex should be in boundries 0<x<v");
+        throw invalid_argument("vertex should be in boundries 0<x<v");
     }
     //need to do both ways because its an undirected graph
     adjlist[src][dst]=weight;
@@ -40,12 +46,12 @@ void Graph::Addedge(int src,int dst, int weight){
 
 }
 void Graph::Removeedge(int src,int dst){
-    if(src<0||dst<0 ||src>v||dst>v){
-        throw std::invalid vertex("vertex should be in boundries 0<x<v");
+    if(!hasedge(src,dst)){
+        throw invalid_argument("vertex should be in boundries 0<x<v");
         //במקום זה אני צריכה לעשות throw 
     }
     if(adjlist[src][dst]==0 ||adjlist[dst][src]==0){
-        throw std::invalid edge("edge between src and dst should be 1");
+        throw invalid_argument("edge between src and dst should be 1");
 
     }
     adjlist[src][dst]=0;

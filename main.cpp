@@ -31,63 +31,37 @@
 
 //     return 0;
 // }
+#include "Graph.hpp"
+#include "Algorithms.hpp"
 #include <iostream>
-using namespace std;
-#include "Priority_queue.hpp"
 
-// Make sure to include the Priority_queue class either by:
-// 1. Including the header file if you have one
-// #include "Priority_qeue.h"
-// 2. Or ensure the class definition is included before main
-// (if both files are compiled together)
+using namespace std;
+using namespace graph;
 
 int main() {
-    // Create a priority queue with capacity 10
-    Priority_queue pq(10);
-    
-    cout << "Testing priority queue operations:" << endl;
-    
-    // Test push operations
-    cout << "\nPushing elements with different priorities:" << endl;
-    pq.push(100, 3);  // Value 100 with priority 3
-    pq.push(200, 1);  // Value 200 with priority 1 (higher priority)
-    pq.push(300, 4);  // Value 300 with priority 4
-    pq.push(400, 2);  // Value 400 with priority 2
-    pq.push(500, 5);  // Value 500 with priority 5
-    
-    // Test top operation
-    cout << "Top element (should be 200): " << pq.top() << endl;
-    
-    // Test pop operations
-    cout << "\nPopping elements (should come out in priority order):" << endl;
-    cout << "Pop 1: " << pq.pop() << endl;  // Should be 200 (priority 1)
-    cout << "Pop 2: " << pq.pop() << endl;  // Should be 400 (priority 2)
-    cout << "Pop 3: " << pq.pop() << endl;  // Should be 100 (priority 3)
-    
-    // Test top after several pops
-    cout << "Top element after 3 pops (should be 300): " << pq.top() << endl;
-    
-    // Test more pops
-    cout << "\nPopping remaining elements:" << endl;
-    cout << "Pop 4: " << pq.pop() << endl;  // Should be 300 (priority 4)
-    cout << "Pop 5: " << pq.pop() << endl;  // Should be 500 (priority 5)
-    
-    // Test empty queue behavior
-    cout << "\nTesting empty queue behavior:" << endl;
-    cout << "Pop on empty queue: " << pq.pop() << endl;
-    cout << "Top on empty queue: " << pq.top() << endl;
-    
-    // Test refilling the queue
-    cout << "\nRefilling the queue:" << endl;
-    pq.push(150, 2);
-    pq.push(250, 1);
-    cout << "Top element after refill (should be 250): " << pq.top() << endl;
-    
-    // Test capacity limit
-    cout << "\nTesting capacity limits:" << endl;
-    for (int i = 0; i < 8; i++) {  // Push 8 more (already have 2)
-        pq.push(i * 100, 10 - i);
-    }
-    
+    // ✅ Step 1: Create a Graph
+    Graph g(6);
+    g.Addedge(0, 1);
+    g.Addedge(0, 2);
+    g.Addedge(1, 3);
+    g.Addedge(1, 4);
+    g.Addedge(2, 5);
+
+    // ✅ Step 2: Create an instance of Algorithms with the graph
+    Algorithms algo(g, 6);
+
+    // ✅ Step 3: Test BFS
+    cout << "\n🔹 Running BFS from Node 0..." << endl;
+    Graph bfsTree = algo.BFS(0);
+    cout << "✅ BFS Tree Adjacency Matrix:" << endl;
+    bfsTree.print_graph();
+
+    // ✅ Step 4: Test DFS
+    cout << "\n🔹 Running DFS from Node 0..." << endl;
+    Graph dfsTree = algo.DFS(0);
+    cout << "✅ DFS Tree Adjacency Matrix:" << endl;
+    dfsTree.print_graph();
+
     return 0;
 }
+
