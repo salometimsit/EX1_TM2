@@ -52,13 +52,13 @@ int main() {
 
     // ✅ Step 3: Test BFS
     cout << "\n🔹 Running BFS from Node 0..." << endl;
-    Graph bfsTree = algo.BFS(0);
+    Graph bfsTree = algo.BFS(g,0);
     cout << "✅ BFS Tree Adjacency Matrix:" << endl;
     bfsTree.print_graph();
 
     // ✅ Step 4: Test DFS
     cout << "\n🔹 Running DFS from Node 0..." << endl;
-    Graph dfsTree = algo.DFS(0);
+    Graph dfsTree = algo.DFS(g,0);
     cout << "✅ DFS Tree Adjacency Matrix:" << endl;
     dfsTree.print_graph();
 

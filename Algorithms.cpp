@@ -59,6 +59,6 @@ Graph Algorithms::DFS(Graph& G,int ori){
     delete[] visited;
     return dfs;
 }
-Graph Algorithms::Dijakstra(int ori){
+// Graph Algorithms::Dijakstra(int ori){
 
-}
+// }

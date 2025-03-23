@@ -13,8 +13,8 @@ namespace graph {
         public:
             Algorithms(Graph& G, int v);
             ~Algorithms();
-            Graph BFS(int ori);
-            Graph DFS(int ori);
+            Graph BFS(Graph& G,int ori);
+            Graph DFS(Graph& G,int ori);
 
 
     };
