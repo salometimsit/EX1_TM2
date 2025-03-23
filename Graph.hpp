@@ -5,14 +5,20 @@
 #include <stdexcept>  
 
 namespace graph {
+    struct Node{
+        const int v; 
+        int weight; 
+        Node* next;
+        Node(int v, int w) : v(v), weight(w), next(nullptr) {}
+    };
     class Graph {
     private:
-        const int v; 
-        int** adjlist; 
-
+        
+        int v;                  
         void initadjlist(); 
 
     public:
+        Node **adjlist;
         Graph(int v); 
         ~Graph(); 
         int get_weight(int src,int dst);

@@ -17,13 +17,15 @@ Graph Algorithms::BFS(Graph& G,int ori){
     visited[ori]=true;
     while(q.curr_size>0){
         int curr_node  = q.pop();
-
-        for(int i=0;i<v;i++){
-            if(G.hasedge(curr_node,i)&& (visited[i]==false)){
-                bfs.Addedge(curr_node,i,G.get_weight(curr_node,i));
+        Node* neigh = G.adjlist[curr_node];
+        while(neigh!=nullptr){
+            int i= neigh->v;
+            if(visited[i]==false){
+                bfs.Addedge(curr_node,i,neigh->weight);
                 q.push(i,q.curr_size+1);
                 visited[i]=true;
             }
+            neigh=neigh->next;
         }
     }
     delete[] visited;
@@ -31,7 +33,7 @@ Graph Algorithms::BFS(Graph& G,int ori){
 }
 Graph Algorithms::DFS(Graph& G,int ori){
     int v=this->v;
-    Graph dfs(this->v);
+    Graph dfs(v);
     Priority_queue q(v);
     cout << "DFS Debug: Adding start node " << ori << " to queue." << endl;
     int time=0;
@@ -43,17 +45,17 @@ Graph Algorithms::DFS(Graph& G,int ori){
     visited[ori]=true;
     time++;
     while(q.curr_size>0){
-        cout << " DFS Debug: Queue size = " << q.curr_size << endl;
         int curr_node  = q.pop();
-        cout << " DFS Debug: Popped node " << curr_node << endl;
-        for(int i=0;i<v;i++){
-            if(G.hasedge(curr_node,i)&& (visited[i]==false)){
-                dfs.Addedge(curr_node,i,G.get_weight(curr_node,i));
-                cout << "DFS Debug: Adding node " << i << " to queue." << endl;
-                visited[i]=true;
-                q.push(i,-time);
+        Node* neigh = G.adjlist[curr_node];
+        while (neigh != nullptr) {
+            int i = neigh->v;
+            if (visited[i]==false) {
+                dfs.Addedge(curr_node, i, neigh->weight);
+                visited[i] = true;
+                q.push(i, -time);
                 time++;
             }
+            neigh = neigh->next;
         }
     }
     delete[] visited;
