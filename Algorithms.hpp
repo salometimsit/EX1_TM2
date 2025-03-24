@@ -4,7 +4,14 @@
 #include <stdexcept>  
 #include "Graph.hpp"
 #include "Priority_queue.hpp"
+#include <climits>
+#include "Union_find.hpp"
 namespace graph {
+    struct Edge{
+        int src;
+        int weight;
+        int dst;
+    };
     class Algorithms {
         private:
             Priority_queue p;
@@ -13,9 +20,14 @@ namespace graph {
         public:
             Algorithms(Graph& G, int v);
             ~Algorithms();
+            
             Graph BFS(Graph& G,int ori);
             Graph DFS(Graph& G,int ori);
-
+            Graph Dijakstra(Graph& G, int ori);
+            Graph Prims(Graph& G, int ori);
+            void bubbleSort(Edge* edges, int n);
+            Graph Kruskal(Graph& G);
+            
 
     };
 }

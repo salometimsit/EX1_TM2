@@ -26,6 +26,7 @@ namespace graph {
         void Removeedge(int src, int dst);
         void print_graph();
         bool hasedge(int src,int dst);
+        int count_edge();
     };
 }
 #endif

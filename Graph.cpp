@@ -121,7 +121,19 @@ bool Graph::hasedge(int src,int dst){
     return false;
 
 }
-       
+int Graph::count_edge(){
+    int count=0;
+    for(int i=0;i<v;i++){
+        Node* curr=adjlist[i];
+        while(curr!=nullptr){
+            if(i<curr->v){
+                count++;
+            }
+            curr=curr->next;
+        }
+    }
+    return count;
+} 
 
 
 
