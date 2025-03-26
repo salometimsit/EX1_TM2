@@ -187,7 +187,5 @@ Graph Algorithms::Kruskal(Graph& G){
     }
     delete[] edges;
     return kruskal;
-
-
 }
 

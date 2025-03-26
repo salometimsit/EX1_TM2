@@ -13,7 +13,6 @@ namespace graph {
     };
     class Graph {
     private:
-        
         int v;                  
         void initadjlist(); 
 
