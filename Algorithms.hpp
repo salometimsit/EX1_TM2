@@ -27,8 +27,11 @@ namespace graph {
             Graph Prims(Graph& G, int ori);
             void bubbleSort(Edge* edges, int n);
             Graph Kruskal(Graph& G);
-            
+            bool samegraph(Graph& x1, Graph& x2, int size);
+           
 
     };
+   
+            
 }
 #endif

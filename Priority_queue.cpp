@@ -45,7 +45,7 @@ void Priority_queue::heapifydown(int index){
 
 Priority_queue::Priority_queue(int capacity){
     this->capacity=capacity;
-    heap=new Node[capacity];
+    this->heap=new Node[capacity]();
     this->curr_size=0;
 }
 Priority_queue::~Priority_queue (){
@@ -57,13 +57,14 @@ void Priority_queue::push(int value,int priority){
     }
     heap[curr_size].value=value;
     heap[curr_size].priority=priority;
+   
     heapifyup(curr_size);
     curr_size++;
+    
 }
 int Priority_queue::pop(){
     if(curr_size==0){
         throw underflow_error("Cannot pop from an empty priority queue");
-        return -1;
     }
     int val= heap[0].value;
     heap[0]=heap[curr_size-1];

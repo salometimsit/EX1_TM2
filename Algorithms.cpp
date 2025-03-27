@@ -4,7 +4,7 @@
 #include <limits.h>
 using namespace std;
 using namespace graph;
-Algorithms::Algorithms(Graph& G, int v) : G(G), v(v),p(v) {}
+Algorithms::Algorithms(Graph& G, int v) : p(v),G(G),v(v) {}
 Algorithms::~Algorithms() {}
 Graph Algorithms::BFS(Graph& G,int ori){
     int v=this->v;
@@ -155,23 +155,24 @@ Graph Algorithms::Kruskal(Graph& G){
     Graph kruskal(v);
     int edg=G.count_edge();
     Edge* edges= new Edge[edg];
+    int in=0;
     for(int i=0;i<v;i++){
         Node* curr=G.adjlist[i];
         while(curr!=nullptr){
-            if(i<curr->v){
-                edges[i].weight=curr->v;
-                edges[i].src=i;
-                edges[i].dst=curr->v;
-                
+            if(i< curr->v){
+                edges[in].weight=curr->weight;
+                edges[in].src=i;
+                edges[in].dst=curr->v;
+                in++;
             }
             curr=curr->next;
         }
     }
     
-    bubbleSort(edges,edg);
+    bubbleSort(edges,in);
     graph::Union_find f(v);
     // int edcount=0;// counts the mst edges
-    for (int i = 0; i < edg; i++) {
+    for (int i = 0; i < in; i++) {
         // if (edcount >= v - 1) {
         //     break; 
         // }
@@ -187,5 +188,22 @@ Graph Algorithms::Kruskal(Graph& G){
     }
     delete[] edges;
     return kruskal;
+}
+
+bool Algorithms::samegraph(Graph& x1, Graph& x2, int size) {
+    for (int i = 0; i < size; i++) {
+        Node* curr1 = x1.adjlist[i];
+        Node* curr2 = x2.adjlist[i];
+        
+        while (curr1 && curr2) {
+            if (curr1->v != curr2->v || curr1->weight != curr2->weight)
+                return false;
+            curr1 = curr1->next;
+            curr2 = curr2->next;
+        }
+
+        if (curr1 || curr2) return false;  
+    }
+    return true;
 }
 

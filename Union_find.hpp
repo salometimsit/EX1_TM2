@@ -11,9 +11,10 @@ namespace graph {
     };
     class Union_find{
         private:
-            int size;
+            
             Nodeu** ptr;
         public:
+            int size;
             ~Union_find();
             Union_find(int s);
             Nodeu* find(Nodeu* x);

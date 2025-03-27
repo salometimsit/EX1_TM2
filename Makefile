@@ -1,22 +1,26 @@
+# קובץ Makefile לפרויקט גרפים - תומך בהרצה, בדיקות, ולגרינד
 
-CXX = clang++-9
-CXXFLAGS =-std=c++2a 
-RM=rm -f
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra
 
-TARGET = graph 
-SRCS = main.cpp Graph.cpp Algorithms.cpp Priority_queue.cpp Union_find.cpp
-OBJS = $(SRCS:.cpp=.o)
+SRC = Algorithms.cpp Graph.cpp Priority_queue.cpp Union_find.cpp
+HEADERS = Algorithms.hpp Graph.hpp Priority_queue.hpp Union_find.hpp
 
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
+MAIN = main.cpp
+TEST = Algorithms_test.cpp 
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+OBJS = $(SRC:.cpp=.o)
 
-Union_find.o: Union_find.cpp Union_find.hpp
-	$(CXX) $(CXXFLAGS) -c Union_find.cpp -o Union_find.o
+main: $(SRC) $(MAIN)
+	$(CXX) $(CXXFLAGS) -o main $(SRC) $(MAIN)
 
-valgrind:
-	valgrind --tool=memcheck $(TARGET)
+test: $(SRC) $(TEST)
+	$(CXX) $(CXXFLAGS) -o test $(SRC) $(TEST)
+	./test
+
+valgrind: test
+	valgrind --leak-check=full ./main
+
+
 clean:
-	$(RM) $(OBJS) $(TARGET) *.gch
+	rm -f *.o test main *.out *.exe
