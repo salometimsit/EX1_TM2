@@ -4,9 +4,25 @@
 #include <limits.h>
 using namespace std;
 using namespace graph;
+/*
+Algorithms class: 
+    in this class nearly all functions excluding kruskal and bubble sort will have an input of original vertex 
+    and a graph and the output will be a graph represnting the result of the algorithm.
+*/
+
+/*
+constructor+ distructor:
+*/
 Algorithms::Algorithms(Graph& G, int v) : p(v),G(G),v(v) {}
 Algorithms::~Algorithms() {}
+
+/*
+BFS: implementation with priority queue and every new node addded will get the priority of its index +1 
+so that when i want to pop ill get the first one that was entered because my priority queue works with min heap(FIFO), 
+so its basically like a standart queue you would use for BFS.
+ */
 Graph Algorithms::BFS(Graph& G,int ori){
+    
     int v=this->v;
     Graph bfs(v);
     Priority_queue q(v);
@@ -32,6 +48,12 @@ Graph Algorithms::BFS(Graph& G,int ori){
     delete[] visited;
     return bfs;
 }
+/*
+DFS: implementation with priority queue and every new node addded will get the priority of a variable called
+ time that starts at 0 end decrease so that the queue can act like a stack in (LIFO) so that when i want
+  to pop ill get the last one that was entered because my priority queue works with min heap. so its basically like
+   a standart stack you would use for DFS.
+*/
 Graph Algorithms::DFS(Graph& G,int ori){
     int v=this->v;
     Graph dfs(v);
@@ -61,7 +83,24 @@ Graph Algorithms::DFS(Graph& G,int ori){
     delete[] visited;
     return dfs;
 }
+/*
+Dijakstra: i initialized all distances to INT_MAX(to demo infinity) and using a priority queue 
+to always process the closest unvisited node.I tracked  the shortest distances and update
+ them when a better path is found. To reconstruct the shortest-path tree, i stored each node’s parent, 
+ and after the main loop, build the result graph using those parent links.I also added a check to prevent negative weights,
+  which Dijkstra doesn't support.
+
+*/
 Graph Algorithms::Dijakstra(Graph& G, int ori){
+    for(int i = 0; i < this->v; i++){
+        Node* curr = G.adjlist[i];
+        while(curr != nullptr){
+            if(curr->weight < 0){
+                throw std::invalid_argument("Dijkstra does not support negative weights");
+            }
+            curr = curr->next;
+        }
+    }
     int v=this->v;
     Graph dij(v);
     Priority_queue q(v);
@@ -96,6 +135,12 @@ Graph Algorithms::Dijakstra(Graph& G, int ori){
     delete[] dist;
     return dij;
 }
+/*
+Prims: implementation- started from a source node (ori) and used the priority queue to always pick the next node with the
+ smallest edge weight. in order to track the minimum edge to each node i used 2 arrays oine for the parents and another one 
+ of the edges that are already in the tree.
+
+*/
 Graph Algorithms::Prims(Graph& G, int ori) {
     int v=this->v;
     Graph prim(v);
@@ -139,6 +184,10 @@ Graph Algorithms::Prims(Graph& G, int ori) {
     delete[] vert;
     return prim;
 }
+/*
+Bublle sort: because I wasnt limited in time complexity I decided to implements the sort of the edges with bubble sort,
+i got edges and sorted them from ascending
+*/
 void Algorithms::bubbleSort(Edge* edges, int n){
     for(int i=0; i<n-1; i++){
         for(int j=0; j<(n-i-1); j++){
@@ -150,6 +199,13 @@ void Algorithms::bubbleSort(Edge* edges, int n){
         }
     }
 }
+
+/*
+Kruskal: in Kruskals akgorithm we sort the edge and then check what edges dont close a circle, 
+in order to do that i used the union structure checking that find of two roots x and y 
+dont give me the same representative- so that there not in the same component.
+
+*/
 Graph Algorithms::Kruskal(Graph& G){
     int v= this->v;
     Graph kruskal(v);
@@ -190,6 +246,14 @@ Graph Algorithms::Kruskal(Graph& G){
     return kruskal;
 }
 
+/* 
+samegraph: this function is souly for test purposes to compare two graphs
+input: 
+2 graphs and their maximum size of the biggest tree
+output: 
+true- if its the same tree
+false- otherwise
+*/
 bool Algorithms::samegraph(Graph& x1, Graph& x2, int size) {
     for (int i = 0; i < size; i++) {
         Node* curr1 = x1.adjlist[i];

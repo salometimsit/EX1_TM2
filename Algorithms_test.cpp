@@ -1,4 +1,4 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+// #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 using namespace std;
 
@@ -39,6 +39,13 @@ TEST_CASE("Dijkstra's algorithm") {
     expected.Addedge(0, 2, 4);  
 
     CHECK(algo.samegraph(result, expected, 4));
+    Graph g2(1);
+    g2.Addedge(0,1,-3);
+    Algorithms algo2(g2,1);
+    CHECK_THROWS_AS(algo.Dijakstra(g, 0), std::invalid_argument);
+    
+
+
 }
 TEST_CASE("Prim's test") {
     Graph g(6);
