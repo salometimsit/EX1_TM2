@@ -1,6 +1,6 @@
 # קובץ Makefile לפרויקט גרפים - תומך בהרצה, בדיקות, ולגרינד
 
-CXX = g++
+CXX = c++
 CXXFLAGS = -std=c++17 -Wall -Wextra
 
 SRC = Algorithms.cpp Graph.cpp Priority_queue.cpp Union_find.cpp

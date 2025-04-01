@@ -13,14 +13,15 @@ namespace graph {
     };
     class Graph {
     private:
-        int v;                  
+       const int  vnum;                  
         void initadjlist(); 
 
     public:
         Node **adjlist;
-        Graph(int v); 
+        Graph(int vnum); 
         ~Graph(); 
         int get_weight(int src,int dst);
+        int getNumVertices() const;
         void Addedge(int src, int dst, int weight = 1);
         void Removeedge(int src, int dst);
         void print_graph();

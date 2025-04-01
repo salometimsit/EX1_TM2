@@ -24,6 +24,23 @@ TEST_CASE("dfs and bfs"){
     CHECK(algo.samegraph(bfsGraph, expected, 3));
     CHECK(algo.samegraph(dfsGraph, expected, 3));
 }
+TEST_CASE("Single vertex graph") {
+    Graph g(1);
+    Algorithms algo(g, 1);
+    CHECK(g.count_edge() == 0);
+    Graph bfs = algo.BFS(g, 0);
+    CHECK(bfs.count_edge() == 0);
+}
+TEST_CASE("BFS/DFS on disconnected node") {
+    Graph g(4);
+    g.Addedge(0, 1);
+    g.Addedge(1, 2);
+    Algorithms algo(g, 4);
+    Graph bfs = algo.BFS(g, 0);
+    CHECK(bfs.getNumVertices() == 4);
+    CHECK(bfs.hasedge(0, 1));
+    CHECK_FALSE(bfs.hasedge(0, 3));
+}
 TEST_CASE("Dijkstra's algorithm") {
     Graph g(4);
     g.Addedge(0, 1, 1);  
@@ -39,10 +56,10 @@ TEST_CASE("Dijkstra's algorithm") {
     expected.Addedge(0, 2, 4);  
 
     CHECK(algo.samegraph(result, expected, 4));
-    Graph g2(1);
+    Graph g2(2);
     g2.Addedge(0,1,-3);
-    Algorithms algo2(g2,1);
-    CHECK_THROWS_AS(algo.Dijakstra(g, 0), std::invalid_argument);
+    Algorithms algo2(g2,2);
+    CHECK_THROWS_AS(algo2.Dijakstra(g2, 0), std::invalid_argument);
     
 
 
@@ -66,6 +83,22 @@ TEST_CASE("Prim's test") {
     expected.Addedge(2, 5, 6);
 
     CHECK(algo.samegraph(result, expected, 6));
+}
+TEST_CASE("Prim on disconnected graph") {
+    Graph g(4);
+    g.Addedge(0, 1, 1);
+    g.Addedge(1, 2, 2);
+    // קודקוד 3 מנותק
+
+    Algorithms algo(g, 4);
+    Graph pt = algo.Prims(g,0);
+
+    // בדוק שאין שום צלע שכוללת את הקודקוד המנותק
+    CHECK_FALSE(pt.hasedge(3, 0));
+    CHECK_FALSE(pt.hasedge(3, 1));
+    CHECK_FALSE(pt.hasedge(3, 2));
+
+    CHECK(pt.count_edge() == 2); 
 }
 
 TEST_CASE("Kruskal's test") {

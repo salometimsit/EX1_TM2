@@ -22,8 +22,7 @@ so that when i want to pop ill get the first one that was entered because my pri
 so its basically like a standart queue you would use for BFS.
  */
 Graph Algorithms::BFS(Graph& G,int ori){
-    
-    int v=this->v;
+    int v=G.getNumVertices();
     Graph bfs(v);
     Priority_queue q(v);
     q.push(ori,0);
@@ -55,7 +54,7 @@ DFS: implementation with priority queue and every new node addded will get the p
    a standart stack you would use for DFS.
 */
 Graph Algorithms::DFS(Graph& G,int ori){
-    int v=this->v;
+    int v=G.getNumVertices();
     Graph dfs(v);
     Priority_queue q(v);
     int time=0;
@@ -92,16 +91,17 @@ to always process the closest unvisited node.I tracked  the shortest distances a
 
 */
 Graph Algorithms::Dijakstra(Graph& G, int ori){
-    for(int i = 0; i < this->v; i++){
+    for(int i = 0; i < G.getNumVertices(); i++){
         Node* curr = G.adjlist[i];
         while(curr != nullptr){
             if(curr->weight < 0){
-                throw std::invalid_argument("Dijkstra does not support negative weights");
+                throw std::invalid_argument("Invalid source vertex");
             }
             curr = curr->next;
         }
+            
     }
-    int v=this->v;
+    int v=G.getNumVertices();
     Graph dij(v);
     Priority_queue q(v);
     q.push(ori,0);
@@ -135,6 +135,7 @@ Graph Algorithms::Dijakstra(Graph& G, int ori){
     delete[] dist;
     return dij;
 }
+
 /*
 Prims: implementation- started from a source node (ori) and used the priority queue to always pick the next node with the
  smallest edge weight. in order to track the minimum edge to each node i used 2 arrays oine for the parents and another one 
@@ -142,7 +143,7 @@ Prims: implementation- started from a source node (ori) and used the priority qu
 
 */
 Graph Algorithms::Prims(Graph& G, int ori) {
-    int v=this->v;
+    int v=G.getNumVertices();
     Graph prim(v);
     Priority_queue q(v);
     q.push(ori,0);
@@ -207,7 +208,7 @@ dont give me the same representative- so that there not in the same component.
 
 */
 Graph Algorithms::Kruskal(Graph& G){
-    int v= this->v;
+    int v=G.getNumVertices();
     Graph kruskal(v);
     int edg=G.count_edge();
     Edge* edges= new Edge[edg];
@@ -256,17 +257,16 @@ false- otherwise
 */
 bool Algorithms::samegraph(Graph& x1, Graph& x2, int size) {
     for (int i = 0; i < size; i++) {
-        Node* curr1 = x1.adjlist[i];
-        Node* curr2 = x2.adjlist[i];
-        
-        while (curr1 && curr2) {
-            if (curr1->v != curr2->v || curr1->weight != curr2->weight)
+        for (int j = 0; j < size; j++) {
+            bool has1 = x1.hasedge(i, j);
+            bool has2 = x2.hasedge(i, j);
+            if (has1 != has2){
+             return false;
+            }
+            if (has1 && x1.get_weight(i, j) != x2.get_weight(i, j)){
                 return false;
-            curr1 = curr1->next;
-            curr2 = curr2->next;
+            } 
         }
-
-        if (curr1 || curr2) return false;  
     }
     return true;
 }
