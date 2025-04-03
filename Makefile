@@ -1,5 +1,5 @@
 # קובץ Makefile לפרויקט גרפים - תומך בהרצה, בדיקות, ולגרינד
-
+#Email: timsitmelosa@gmail.com
 CXX = c++
 CXXFLAGS = -std=c++17 -Wall -Wextra
 

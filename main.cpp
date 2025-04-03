@@ -1,3 +1,4 @@
+//Email: timsitmelosa@gmail.com
 #include "Priority_queue.hpp"
 #include "Algorithms.hpp"
 #include "Graph.hpp"
@@ -166,71 +167,3 @@ int main(){
     }
 
 }
-// #include "Graph.hpp"
-// #include "Algorithms.hpp"
-// #include <iostream>
-
-// using namespace std;
-// using namespace graph;
-
-
-
-
-
-// int main() {
-//     // Create a graph with 6 vertices
-//     Graph G(6);
-    
-//     // Add edges
-//     G.Addedge(0, 1, 4);
-//     G.Addedge(0, 2, 3);
-//     G.Addedge(1, 2, 1);
-//     G.Addedge(1, 3, 2);
-//     G.Addedge(2, 3, 4);
-//     G.Addedge(3, 4, 2);
-//     G.Addedge(4, 5, 6);
-    
-//     std::cout << "Original Graph:\n";
-//     G.print_graph();
-
-    
-//     // Apply Kruskal's algorithm
-//    // Graph mst = Kruskal(G);
-//    int start_node = 0;
-//    Algorithms algo(G, 6);
-//    Graph kruskal = algo.Kruskal(G);
-//    Graph prim=algo.Prims(G,start_node);
-
-//     std::cout << "\nkruskal:\n";
-//     kruskal.print_graph();
-   
-//     std::cout << "\nprim:\n";
-//     prim.print_graph();
-    
-//     // Calculate and print the total weight of the MST
-//    // int totalWeight = calculateTotalWeight(mst);
-//    // std::cout << "\nTotal weight of the MST: " << totalWeight << std::endl;
-    
-//     return 0;
-// }
-// int main() {
-//     Union_find uf(5); // ✅ Create Union-Find with 5 elements
-
-//     // ✅ Use `getNode(index)` instead of accessing `ptr[]`
-//     Nodeu* node0 = uf.getNode(0);
-//     Nodeu* node1 = uf.getNode(1);
-//     Nodeu* node2 = uf.getNode(2);
-//     Nodeu* node3 = uf.getNode(3);
-//     Nodeu* node4 = uf.getNode(4);
-
-//     // ✅ Perform union operations
-//     uf.add(node0, node1);
-//     uf.add(node2, node3);
-//     uf.add(node1, node3); // ✅ Connects (0,1) and (2,3)
-
-//     // ✅ Check if nodes are in the same set
-//     cout << "Are 0 and 3 connected? " << (uf.find(node0) == uf.find(node3) ? "Yes" : "No") << endl;
-//     cout << "Are 1 and 4 connected? " << (uf.find(node1) == uf.find(node4) ? "Yes" : "No") << endl;
-
-//     return 0;
-// }

@@ -1,3 +1,4 @@
+//Email: timsitmelosa@gmail.com
 #include <iostream>
 #include <stdexcept>
 using namespace std;

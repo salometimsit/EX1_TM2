@@ -1,4 +1,4 @@
-// #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+//Email: timsitmelosa@gmail.com
 #include "doctest.h"
 #include "Union_find.hpp"
 

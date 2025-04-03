@@ -1,3 +1,4 @@
+//Email: timsitmelosa@gmail.com
 #include "Graph.hpp"
 #include <iostream>
 using namespace std;
@@ -127,7 +128,10 @@ void Graph::Removeedge(int src,int dst){
     delete current;
 }
 
-
+/* 
+print graph itirates through the adjendency list and prints the list from each vertex to its neighbours
+in form of x->(1,2) where 1 is the vertex and 2 is the weight.
+*/
 void Graph::print_graph(){
     for(int i=0;i<vnum;i++){
         cout << "Vertex " << i << ": ";
@@ -139,6 +143,14 @@ void Graph::print_graph(){
         cout<<endl;
     }
 }
+/*
+this boolean function helps me throughout the code and its purpose
+is to detect wetheror not there even exists an edge between two vertexes
+input: 
+source and destenation vertexes
+output:
+true if edge existes and false otherwise
+*/
 bool Graph::hasedge(int src,int dst){
     if(src<0||dst<0 ||src>=vnum||dst>=vnum){
         throw invalid_argument("Error: Invalid vertex index");
@@ -153,6 +165,14 @@ bool Graph::hasedge(int src,int dst){
     return false;
 
 }
+/*
+this function helps me count how many edges exists in my graph
+input:
+nothing
+output:
+number of edges in a Graph
+
+*/
 int Graph::count_edge(){
     int count=0;
     for(int i=0;i<vnum;i++){

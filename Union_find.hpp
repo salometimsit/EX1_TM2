@@ -1,3 +1,4 @@
+//Email: timsitmelosa@gmail.com
 #ifndef Union_find_HPP
 #define Union_find_HPP
 

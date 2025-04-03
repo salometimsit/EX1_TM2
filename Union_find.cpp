@@ -1,5 +1,7 @@
+//Email: timsitmelosa@gmail.com
 #include "Union_find.hpp"
 using namespace graph;
+//constructor+distructor
 Union_find::Union_find(int s){
     size=s;
     this->ptr= new Nodeu*[size];
@@ -15,6 +17,7 @@ Union_find::~Union_find() {
     }
     delete[] ptr;
 }
+// 
 Nodeu*  graph::Union_find::find(Nodeu* x){
     if(x->rep==x){
         return x;

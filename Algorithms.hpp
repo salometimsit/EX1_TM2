@@ -1,3 +1,4 @@
+//Email: timsitmelosa@gmail.com
 #ifndef ALGORITHMS_HPP
 #define ALGORITHMS_HPP
 #include <iostream>

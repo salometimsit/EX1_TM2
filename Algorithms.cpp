@@ -1,3 +1,4 @@
+//Email: timsitmelosa@gmail.com
 #include "Algorithms.hpp"
 #include <iostream>
 #include "Priority_queue.hpp"
