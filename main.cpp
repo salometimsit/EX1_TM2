@@ -50,12 +50,11 @@ void dfsprint(){
     g.Addedge(1, 3);
     g.Addedge(1, 4);
     g.Addedge(2, 5);
-
     Algorithms algo(g, 6);
     cout<<"tree before DFS"<<endl;
     g.print_graph();
     cout << "Running DFS from Node 0..." << endl;
-    Graph dfsTree = algo.DFS(g,0);
+    Graph dfsTree = algo.DFS(g,1);
     cout << "DFS Tree Adjacency:" << endl;
     dfsTree.print_graph();
 

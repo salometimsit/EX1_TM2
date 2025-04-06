@@ -1,7 +1,6 @@
 //Email: timsitmelosa@gmail.com
 #include "doctest.h"
 using namespace std;
-//using namespace graph;
 #include "Priority_queue.hpp"
 
 Priority_queue p(6);

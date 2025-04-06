@@ -8,8 +8,8 @@ In this Project I used a bunch of internet sites for help and insparation, all t
 ## **Technical Info**:
 To run the project follow the following instructions:
 1. Firstly, run the command: `make`
-2. If you would like to run the main file enter: `./main`
-3. In order to run tests all together run: `./test`
+2. If you would like to run the main file enter: `make main` and then run `./main`
+3. In order to run tests all together run: `make test`and if its not the first time run `./test`
 4. In order to clean files run: `make clean`
 5. In order to test memory leaks with valgrind run: `make valgrind` and pay attention that because its linked to my main program to test all algorithms you have to do it several times.
 ## **Classes**:

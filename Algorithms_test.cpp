@@ -24,6 +24,23 @@ TEST_CASE("dfs and bfs"){
     CHECK(algo.samegraph(bfsGraph, expected, 3));
     CHECK(algo.samegraph(dfsGraph, expected, 3));
 }
+TEST_CASE("DFS on disconnected graph") {
+    //4 and 5 are disconected must give us a forest 
+    Graph g(6);
+    g.Addedge(0, 1);
+    g.Addedge(1, 2);
+    g.Addedge(2, 3);
+    Algorithms algo(g, 6);
+    Graph dfsTree = algo.DFS(g, 0);  
+
+   //in a forest the number of edges must be smaller than number of v
+    CHECK(dfsTree.count_edge() < dfsTree.getNumVertices() - 1);
+
+    CHECK_FALSE(dfsTree.hasedge(4, 0));
+    CHECK_FALSE(dfsTree.hasedge(5, 1));
+    CHECK_FALSE(dfsTree.hasedge(4, 5));
+}
+
 TEST_CASE("Single vertex graph") {
     Graph g(1);
     Algorithms algo(g, 1);

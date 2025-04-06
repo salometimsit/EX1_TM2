@@ -80,6 +80,28 @@ Graph Algorithms::DFS(Graph& G,int ori){
             neigh = neigh->next;
         }
     }
+    //added this  in order to check the whole forest and not only the specific tree 
+    for(int i=0;i<v;i++){
+        if(!visited[i]){
+            q.push(i,-time);
+            time++;
+            visited[i] = true;
+        }
+        while(q.curr_size>0){
+            int curr_node  = q.pop();
+            Node* neigh = G.adjlist[curr_node];
+            while (neigh != nullptr) {
+                int i = neigh->v;
+                if (visited[i]==false) {
+                    dfs.Addedge(curr_node, i, neigh->weight);
+                    visited[i] = true;
+                    q.push(i, -time);
+                    time++;
+                }
+                neigh = neigh->next;
+            }
+        }
+    }
     delete[] visited;
     return dfs;
 }
@@ -229,17 +251,15 @@ Graph Algorithms::Kruskal(Graph& G){
     
     bubbleSort(edges,in);
     graph::Union_find f(v);
-    // int edcount=0;// counts the mst edges
+  
     for (int i = 0; i < in; i++) {
-        // if (edcount >= v - 1) {
-        //     break; 
-        // }
+        
         Nodeu* srcn= f.getNode(edges[i].src);
         Nodeu* dstn= f.getNode(edges[i].dst);
         if(f.find(srcn)!=f.find(dstn)){
             kruskal.Addedge(edges[i].src,edges[i].dst,edges[i].weight);
             f.add(srcn,dstn);
-            // edcount++;
+            
 
         }
 
